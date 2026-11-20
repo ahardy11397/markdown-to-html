@@ -1,0 +1,65 @@
+# main.meme - markdown-to-html CLI router
+use md_inline
+use md_block
+use md_render
+
+function print_usage() -> Void:
+    print "Usage: md <render|render-file|tokens> [args]"
+
+function run_cli() -> Void:
+    define argc as argument count
+    if argc < 2:
+        call print_usage()
+        exit with code 1
+
+    define cmd as argument 1
+    if cmd == "render":
+        if argc != 3:
+            print "Usage: md render <file.md>"
+            exit with code 1
+        define path as argument 2
+        define content_opt as read string from file path or else nothing
+        if content_opt is nothing:
+            print "Error: file not found: ", path
+            exit with code 1
+        define content as value of content_opt
+        define html as render_markdown(content)
+        if length of string html > 0:
+            print html
+        exit with code 0
+
+    if cmd == "render-file":
+        if argc != 4:
+            print "Usage: md render-file <in.md> <out.html>"
+            exit with code 1
+        define in_path as argument 2
+        define out_path as argument 3
+        define content_opt as read string from file in_path or else nothing
+        if content_opt is nothing:
+            print "Error: file not found: ", in_path
+            exit with code 1
+        define content as value of content_opt
+        define html as render_markdown(content)
+        write file out_path with html
+        exit with code 0
+
+    if cmd == "tokens":
+        if argc != 3:
+            print "Usage: md tokens <file.md>"
+            exit with code 1
+        define path as argument 2
+        define content_opt as read string from file path or else nothing
+        if content_opt is nothing:
+            print "Error: file not found: ", path
+            exit with code 1
+        define content as value of content_opt
+        define tokens as get_tokens(content)
+        for each t in tokens:
+            print t
+        exit with code 0
+
+    print "Unknown command: ", cmd
+    call print_usage()
+    exit with code 1
+
+call run_cli()

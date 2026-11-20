@@ -1,0 +1,5005 @@
+{
+  "lockfile_version": 1,
+  "entries": {
+    "md_block.meme": {
+      "source_sha256": "2d73a8cb054fc61694889f832189d4b3199fd1033cdaac5d856e6ec5d03dc9ab",
+      "provider": "heuristic",
+      "resolutions": {},
+      "pending_ambiguities": [],
+      "draft_items": [
+        {
+          "op": "record_def",
+          "name": "Block",
+          "fields": [
+            {
+              "name": "kind",
+              "field_type": "String"
+            },
+            {
+              "name": "content",
+              "field_type": "String"
+            },
+            {
+              "name": "level",
+              "field_type": "Int"
+            },
+            {
+              "name": "lines",
+              "field_type": "List<String>"
+            }
+          ],
+          "source_line": 3
+        },
+        {
+          "op": "func_def",
+          "name": "get_heading_level",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Int",
+          "body": [
+            {
+              "op": "var_decl",
+              "name": "len",
+              "var_type": "Int",
+              "value": {
+                "expr_type": "string_length",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                }
+              },
+              "source_line": 10
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "<",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "len"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 2,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  },
+                  "source_line": 12
+                }
+              ],
+              "else_body": [],
+              "source_line": 11
+            },
+            {
+              "op": "var_decl",
+              "name": "i",
+              "var_type": "Int",
+              "value": {
+                "expr_type": "literal",
+                "value": 0,
+                "data_type": "Int"
+              },
+              "source_line": 13
+            },
+            {
+              "op": "while_loop",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "and",
+                "left": {
+                  "expr_type": "binary_op",
+                  "op": "<",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "i"
+                  },
+                  "right": {
+                    "expr_type": "var_ref",
+                    "name": "len"
+                  }
+                },
+                "right": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "string_char_at",
+                    "target": {
+                      "expr_type": "var_ref",
+                      "name": "line"
+                    },
+                    "index": {
+                      "expr_type": "var_ref",
+                      "name": "i"
+                    }
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": "#",
+                    "data_type": "String"
+                  }
+                }
+              },
+              "body": [
+                {
+                  "op": "assign",
+                  "name": "i",
+                  "value": {
+                    "expr_type": "binary_op",
+                    "op": "+",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "i"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 1,
+                      "data_type": "Int"
+                    }
+                  },
+                  "source_line": 15
+                }
+              ],
+              "source_line": 14
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "and",
+                "left": {
+                  "expr_type": "binary_op",
+                  "op": ">=",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "i"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 1,
+                    "data_type": "Int"
+                  }
+                },
+                "right": {
+                  "expr_type": "binary_op",
+                  "op": "<=",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "i"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 6,
+                    "data_type": "Int"
+                  }
+                }
+              },
+              "then_body": [
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": "and",
+                    "left": {
+                      "expr_type": "binary_op",
+                      "op": "<",
+                      "left": {
+                        "expr_type": "var_ref",
+                        "name": "i"
+                      },
+                      "right": {
+                        "expr_type": "var_ref",
+                        "name": "len"
+                      }
+                    },
+                    "right": {
+                      "expr_type": "binary_op",
+                      "op": "==",
+                      "left": {
+                        "expr_type": "string_char_at",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        },
+                        "index": {
+                          "expr_type": "var_ref",
+                          "name": "i"
+                        }
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": " ",
+                        "data_type": "String"
+                      }
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "return_stmt",
+                      "value": {
+                        "expr_type": "var_ref",
+                        "name": "i"
+                      },
+                      "source_line": 18
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 17
+                }
+              ],
+              "else_body": [],
+              "source_line": 16
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "literal",
+                "value": 0,
+                "data_type": "Int"
+              },
+              "source_line": 19
+            }
+          ],
+          "source_line": 9
+        },
+        {
+          "op": "func_def",
+          "name": "is_code_fence",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Bool",
+          "body": [
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "str_starts_with",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                },
+                "prefix": {
+                  "expr_type": "literal",
+                  "value": "```",
+                  "data_type": "String"
+                }
+              },
+              "source_line": 22
+            }
+          ],
+          "source_line": 21
+        },
+        {
+          "op": "func_def",
+          "name": "is_hr",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Bool",
+          "body": [
+            {
+              "op": "var_decl",
+              "name": "trimmed",
+              "var_type": "String",
+              "value": {
+                "expr_type": "string_trim",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                }
+              },
+              "source_line": 25
+            },
+            {
+              "op": "var_decl",
+              "name": "len",
+              "var_type": "Int",
+              "value": {
+                "expr_type": "string_length",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "trimmed"
+                }
+              },
+              "source_line": 26
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "<",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "len"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 3,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": false,
+                    "data_type": "Bool"
+                  },
+                  "source_line": 28
+                }
+              ],
+              "else_body": [],
+              "source_line": 27
+            },
+            {
+              "op": "for_range",
+              "loop_var": "k",
+              "start": {
+                "expr_type": "literal",
+                "value": 0,
+                "data_type": "Int"
+              },
+              "end": {
+                "expr_type": "binary_op",
+                "op": "-",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "len"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 1,
+                  "data_type": "Int"
+                }
+              },
+              "body": [
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": "!=",
+                    "left": {
+                      "expr_type": "string_char_at",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "trimmed"
+                      },
+                      "index": {
+                        "expr_type": "var_ref",
+                        "name": "k"
+                      }
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": "-",
+                      "data_type": "String"
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "return_stmt",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": false,
+                        "data_type": "Bool"
+                      },
+                      "source_line": 31
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 30
+                }
+              ],
+              "source_line": 29
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "literal",
+                "value": true,
+                "data_type": "Bool"
+              },
+              "source_line": 32
+            }
+          ],
+          "source_line": 24
+        },
+        {
+          "op": "func_def",
+          "name": "is_unordered_list_item",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Bool",
+          "body": [
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "str_starts_with",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                },
+                "prefix": {
+                  "expr_type": "literal",
+                  "value": "- ",
+                  "data_type": "String"
+                }
+              },
+              "source_line": 35
+            }
+          ],
+          "source_line": 34
+        },
+        {
+          "op": "func_def",
+          "name": "get_ordered_list_prefix_len",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Int",
+          "body": [
+            {
+              "op": "var_decl",
+              "name": "len",
+              "var_type": "Int",
+              "value": {
+                "expr_type": "string_length",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                }
+              },
+              "source_line": 38
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "<",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "len"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 3,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  },
+                  "source_line": 40
+                }
+              ],
+              "else_body": [],
+              "source_line": 39
+            },
+            {
+              "op": "var_decl",
+              "name": "dot_space_idx",
+              "var_type": "Int",
+              "value": {
+                "expr_type": "string_index_of",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                },
+                "substring": {
+                  "expr_type": "literal",
+                  "value": ". ",
+                  "data_type": "String"
+                }
+              },
+              "source_line": 41
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "<=",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "dot_space_idx"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  },
+                  "source_line": 43
+                }
+              ],
+              "else_body": [],
+              "source_line": 42
+            },
+            {
+              "op": "for_range",
+              "loop_var": "k",
+              "start": {
+                "expr_type": "literal",
+                "value": 0,
+                "data_type": "Int"
+              },
+              "end": {
+                "expr_type": "binary_op",
+                "op": "-",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "dot_space_idx"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 1,
+                  "data_type": "Int"
+                }
+              },
+              "body": [
+                {
+                  "op": "var_decl",
+                  "name": "ch",
+                  "var_type": "String",
+                  "value": {
+                    "expr_type": "string_char_at",
+                    "target": {
+                      "expr_type": "var_ref",
+                      "name": "line"
+                    },
+                    "index": {
+                      "expr_type": "var_ref",
+                      "name": "k"
+                    }
+                  },
+                  "source_line": 45
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "unary_op",
+                    "op": "not",
+                    "operand": {
+                      "expr_type": "is_digit",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "ch"
+                      }
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "return_stmt",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": 0,
+                        "data_type": "Int"
+                      },
+                      "source_line": 47
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 46
+                }
+              ],
+              "source_line": 44
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "binary_op",
+                "op": "+",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "dot_space_idx"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 2,
+                  "data_type": "Int"
+                }
+              },
+              "source_line": 48
+            }
+          ],
+          "source_line": 37
+        },
+        {
+          "op": "func_def",
+          "name": "is_blockquote_line",
+          "params": [
+            {
+              "name": "line",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "Bool",
+          "body": [
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "str_starts_with",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                },
+                "prefix": {
+                  "expr_type": "literal",
+                  "value": "> ",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": true,
+                    "data_type": "Bool"
+                  },
+                  "source_line": 52
+                }
+              ],
+              "else_body": [],
+              "source_line": 51
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "line"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": ">",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "literal",
+                    "value": true,
+                    "data_type": "Bool"
+                  },
+                  "source_line": 54
+                }
+              ],
+              "else_body": [],
+              "source_line": 53
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "literal",
+                "value": false,
+                "data_type": "Bool"
+              },
+              "source_line": 55
+            }
+          ],
+          "source_line": 50
+        },
+        {
+          "op": "func_def",
+          "name": "create_block_if_any",
+          "params": [
+            {
+              "name": "kind",
+              "param_type": "String"
+            },
+            {
+              "name": "lines",
+              "param_type": "List<String>"
+            }
+          ],
+          "return_type": "Optional<Block>",
+          "body": [
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "list_length",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "lines"
+                  }
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "optional_none"
+                  },
+                  "source_line": 59
+                }
+              ],
+              "else_body": [],
+              "source_line": 58
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "kind"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": "paragraph",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "optional_wrap",
+                    "value": {
+                      "expr_type": "record_literal",
+                      "record_name": "Block",
+                      "fields": [
+                        {
+                          "name": "kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "paragraph",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "content",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "level",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": 0,
+                            "data_type": "Int"
+                          }
+                        },
+                        {
+                          "name": "lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "lines"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "source_line": 61
+                }
+              ],
+              "else_body": [],
+              "source_line": 60
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "kind"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": "blockquote",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "optional_wrap",
+                    "value": {
+                      "expr_type": "record_literal",
+                      "record_name": "Block",
+                      "fields": [
+                        {
+                          "name": "kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "blockquote",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "content",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "level",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": 0,
+                            "data_type": "Int"
+                          }
+                        },
+                        {
+                          "name": "lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "lines"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "source_line": 63
+                }
+              ],
+              "else_body": [],
+              "source_line": 62
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "kind"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": "ul",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "optional_wrap",
+                    "value": {
+                      "expr_type": "record_literal",
+                      "record_name": "Block",
+                      "fields": [
+                        {
+                          "name": "kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "ul",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "content",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "level",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": 0,
+                            "data_type": "Int"
+                          }
+                        },
+                        {
+                          "name": "lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "lines"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "source_line": 65
+                }
+              ],
+              "else_body": [],
+              "source_line": 64
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "var_ref",
+                  "name": "kind"
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": "ol",
+                  "data_type": "String"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "optional_wrap",
+                    "value": {
+                      "expr_type": "record_literal",
+                      "record_name": "Block",
+                      "fields": [
+                        {
+                          "name": "kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "ol",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "content",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "level",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": 0,
+                            "data_type": "Int"
+                          }
+                        },
+                        {
+                          "name": "lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "lines"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "source_line": 67
+                }
+              ],
+              "else_body": [],
+              "source_line": 66
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "optional_none"
+              },
+              "source_line": 68
+            }
+          ],
+          "source_line": 57
+        },
+        {
+          "op": "func_def",
+          "name": "parse_blocks",
+          "params": [
+            {
+              "name": "content",
+              "param_type": "String"
+            }
+          ],
+          "return_type": "List<Block>",
+          "body": [
+            {
+              "op": "var_decl",
+              "name": "clean_content",
+              "var_type": "String",
+              "value": {
+                "expr_type": "string_replace",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "content"
+                },
+                "old": {
+                  "expr_type": "literal",
+                  "value": "\r",
+                  "data_type": "String"
+                },
+                "new": {
+                  "expr_type": "literal",
+                  "value": "",
+                  "data_type": "String"
+                }
+              },
+              "source_line": 71
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "binary_op",
+                "op": "==",
+                "left": {
+                  "expr_type": "string_length",
+                  "target": {
+                    "expr_type": "string_trim",
+                    "target": {
+                      "expr_type": "var_ref",
+                      "name": "clean_content"
+                    }
+                  }
+                },
+                "right": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                }
+              },
+              "then_body": [
+                {
+                  "op": "return_stmt",
+                  "value": {
+                    "expr_type": "list_literal",
+                    "elements": [],
+                    "element_type": "Block"
+                  },
+                  "source_line": 73
+                }
+              ],
+              "else_body": [],
+              "source_line": 72
+            },
+            {
+              "op": "var_decl",
+              "name": "raw_lines",
+              "var_type": "List<String>",
+              "value": {
+                "expr_type": "string_split",
+                "target": {
+                  "expr_type": "var_ref",
+                  "name": "clean_content"
+                },
+                "separator": {
+                  "expr_type": "literal",
+                  "value": "\n",
+                  "data_type": "String"
+                }
+              },
+              "source_line": 74
+            },
+            {
+              "op": "var_decl",
+              "name": "blocks",
+              "var_type": "List<Block>",
+              "value": {
+                "expr_type": "list_literal",
+                "elements": [],
+                "element_type": "Block"
+              },
+              "source_line": 75
+            },
+            {
+              "op": "var_decl",
+              "name": "empty_lines",
+              "var_type": "List<String>",
+              "value": {
+                "expr_type": "list_literal",
+                "elements": [],
+                "element_type": "String"
+              },
+              "source_line": 76
+            },
+            {
+              "op": "var_decl",
+              "name": "in_code_block",
+              "var_type": "Bool",
+              "value": {
+                "expr_type": "literal",
+                "value": false,
+                "data_type": "Bool"
+              },
+              "source_line": 77
+            },
+            {
+              "op": "var_decl",
+              "name": "code_lines",
+              "var_type": "List<String>",
+              "value": {
+                "expr_type": "list_literal",
+                "elements": [],
+                "element_type": "String"
+              },
+              "source_line": 78
+            },
+            {
+              "op": "var_decl",
+              "name": "current_kind",
+              "var_type": "String",
+              "value": {
+                "expr_type": "literal",
+                "value": "",
+                "data_type": "String"
+              },
+              "source_line": 79
+            },
+            {
+              "op": "var_decl",
+              "name": "current_lines",
+              "var_type": "List<String>",
+              "value": {
+                "expr_type": "list_literal",
+                "elements": [],
+                "element_type": "String"
+              },
+              "source_line": 80
+            },
+            {
+              "op": "for_each",
+              "item_var": "line",
+              "index_var": null,
+              "collection": "raw_lines",
+              "body": [
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "var_ref",
+                    "name": "in_code_block"
+                  },
+                  "then_body": [
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "call",
+                        "func_name": "is_code_fence",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          }
+                        ]
+                      },
+                      "then_body": [
+                        {
+                          "op": "assign",
+                          "name": "in_code_block",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": false,
+                            "data_type": "Bool"
+                          },
+                          "source_line": 85
+                        },
+                        {
+                          "op": "var_decl",
+                          "name": "cb",
+                          "var_type": "Block",
+                          "value": {
+                            "expr_type": "record_literal",
+                            "record_name": "Block",
+                            "fields": [
+                              {
+                                "name": "kind",
+                                "value": {
+                                  "expr_type": "literal",
+                                  "value": "code",
+                                  "data_type": "String"
+                                }
+                              },
+                              {
+                                "name": "content",
+                                "value": {
+                                  "expr_type": "literal",
+                                  "value": "",
+                                  "data_type": "String"
+                                }
+                              },
+                              {
+                                "name": "level",
+                                "value": {
+                                  "expr_type": "literal",
+                                  "value": 0,
+                                  "data_type": "Int"
+                                }
+                              },
+                              {
+                                "name": "lines",
+                                "value": {
+                                  "expr_type": "var_ref",
+                                  "name": "code_lines"
+                                }
+                              }
+                            ]
+                          },
+                          "source_line": 86
+                        },
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "cb"
+                          },
+                          "source_line": 87
+                        },
+                        {
+                          "op": "assign",
+                          "name": "code_lines",
+                          "value": {
+                            "expr_type": "list_literal",
+                            "elements": [],
+                            "element_type": "String"
+                          },
+                          "source_line": 88
+                        }
+                      ],
+                      "else_body": [
+                        {
+                          "op": "list_append",
+                          "target": "code_lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "source_line": 90
+                        }
+                      ],
+                      "source_line": 84
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 91
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 83
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "call",
+                    "func_name": "is_code_fence",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "then_body": [
+                    {
+                      "op": "var_decl",
+                      "name": "opt_b",
+                      "var_type": "Optional<Block>",
+                      "value": {
+                        "expr_type": "call",
+                        "func_name": "create_block_if_any",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_lines"
+                          }
+                        ]
+                      },
+                      "source_line": 94
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "optional_is_nothing",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        },
+                        "negated": true
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "optional_unwrap",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            }
+                          },
+                          "source_line": 96
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 95
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_kind",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": "",
+                        "data_type": "String"
+                      },
+                      "source_line": 97
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 98
+                    },
+                    {
+                      "op": "assign",
+                      "name": "in_code_block",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": true,
+                        "data_type": "Bool"
+                      },
+                      "source_line": 99
+                    },
+                    {
+                      "op": "assign",
+                      "name": "code_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 100
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 101
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 93
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": "==",
+                    "left": {
+                      "expr_type": "string_length",
+                      "target": {
+                        "expr_type": "string_trim",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      }
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "var_decl",
+                      "name": "opt_b",
+                      "var_type": "Optional<Block>",
+                      "value": {
+                        "expr_type": "call",
+                        "func_name": "create_block_if_any",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_lines"
+                          }
+                        ]
+                      },
+                      "source_line": 104
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "optional_is_nothing",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        },
+                        "negated": true
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "optional_unwrap",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            }
+                          },
+                          "source_line": 106
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 105
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_kind",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": "",
+                        "data_type": "String"
+                      },
+                      "source_line": 107
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 108
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 109
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 103
+                },
+                {
+                  "op": "var_decl",
+                  "name": "h_level",
+                  "var_type": "Int",
+                  "value": {
+                    "expr_type": "call",
+                    "func_name": "get_heading_level",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "source_line": 111
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": ">",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "h_level"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "var_decl",
+                      "name": "opt_b",
+                      "var_type": "Optional<Block>",
+                      "value": {
+                        "expr_type": "call",
+                        "func_name": "create_block_if_any",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_lines"
+                          }
+                        ]
+                      },
+                      "source_line": 113
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "optional_is_nothing",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        },
+                        "negated": true
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "optional_unwrap",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            }
+                          },
+                          "source_line": 115
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 114
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_kind",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": "",
+                        "data_type": "String"
+                      },
+                      "source_line": 116
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 117
+                    },
+                    {
+                      "op": "var_decl",
+                      "name": "h_text",
+                      "var_type": "String",
+                      "value": {
+                        "expr_type": "string_trim",
+                        "target": {
+                          "expr_type": "string_slice",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "start": {
+                            "expr_type": "binary_op",
+                            "op": "+",
+                            "left": {
+                              "expr_type": "var_ref",
+                              "name": "h_level"
+                            },
+                            "right": {
+                              "expr_type": "literal",
+                              "value": 1,
+                              "data_type": "Int"
+                            }
+                          },
+                          "end": {
+                            "expr_type": "string_length",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            }
+                          }
+                        }
+                      },
+                      "source_line": 118
+                    },
+                    {
+                      "op": "list_append",
+                      "target": "blocks",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "heading",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "h_text"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "h_level"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "empty_lines"
+                            }
+                          }
+                        ]
+                      },
+                      "source_line": 119
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 120
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 112
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "call",
+                    "func_name": "is_hr",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "then_body": [
+                    {
+                      "op": "var_decl",
+                      "name": "opt_b",
+                      "var_type": "Optional<Block>",
+                      "value": {
+                        "expr_type": "call",
+                        "func_name": "create_block_if_any",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_lines"
+                          }
+                        ]
+                      },
+                      "source_line": 123
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "optional_is_nothing",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        },
+                        "negated": true
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "optional_unwrap",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            }
+                          },
+                          "source_line": 125
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 124
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_kind",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": "",
+                        "data_type": "String"
+                      },
+                      "source_line": 126
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 127
+                    },
+                    {
+                      "op": "list_append",
+                      "target": "blocks",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "hr",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": 0,
+                              "data_type": "Int"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "empty_lines"
+                            }
+                          }
+                        ]
+                      },
+                      "source_line": 128
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 129
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 122
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "call",
+                    "func_name": "is_unordered_list_item",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "then_body": [
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "binary_op",
+                        "op": "!=",
+                        "left": {
+                          "expr_type": "var_ref",
+                          "name": "current_kind"
+                        },
+                        "right": {
+                          "expr_type": "literal",
+                          "value": "ul",
+                          "data_type": "String"
+                        }
+                      },
+                      "then_body": [
+                        {
+                          "op": "var_decl",
+                          "name": "opt_b",
+                          "var_type": "Optional<Block>",
+                          "value": {
+                            "expr_type": "call",
+                            "func_name": "create_block_if_any",
+                            "args": [
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_kind"
+                              },
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_lines"
+                              }
+                            ]
+                          },
+                          "source_line": 133
+                        },
+                        {
+                          "op": "if_stmt",
+                          "condition": {
+                            "expr_type": "optional_is_nothing",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            },
+                            "negated": true
+                          },
+                          "then_body": [
+                            {
+                              "op": "list_append",
+                              "target": "blocks",
+                              "value": {
+                                "expr_type": "optional_unwrap",
+                                "target": {
+                                  "expr_type": "var_ref",
+                                  "name": "opt_b"
+                                }
+                              },
+                              "source_line": 135
+                            }
+                          ],
+                          "else_body": [],
+                          "source_line": 134
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "ul",
+                            "data_type": "String"
+                          },
+                          "source_line": 136
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_lines",
+                          "value": {
+                            "expr_type": "list_literal",
+                            "elements": [],
+                            "element_type": "String"
+                          },
+                          "source_line": 137
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 132
+                    },
+                    {
+                      "op": "var_decl",
+                      "name": "item_text",
+                      "var_type": "String",
+                      "value": {
+                        "expr_type": "string_slice",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        },
+                        "start": {
+                          "expr_type": "literal",
+                          "value": 2,
+                          "data_type": "Int"
+                        },
+                        "end": {
+                          "expr_type": "string_length",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          }
+                        }
+                      },
+                      "source_line": 138
+                    },
+                    {
+                      "op": "list_append",
+                      "target": "current_lines",
+                      "value": {
+                        "expr_type": "var_ref",
+                        "name": "item_text"
+                      },
+                      "source_line": 139
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 140
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 131
+                },
+                {
+                  "op": "var_decl",
+                  "name": "ol_prefix_len",
+                  "var_type": "Int",
+                  "value": {
+                    "expr_type": "call",
+                    "func_name": "get_ordered_list_prefix_len",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "source_line": 142
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": ">",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "ol_prefix_len"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "binary_op",
+                        "op": "!=",
+                        "left": {
+                          "expr_type": "var_ref",
+                          "name": "current_kind"
+                        },
+                        "right": {
+                          "expr_type": "literal",
+                          "value": "ol",
+                          "data_type": "String"
+                        }
+                      },
+                      "then_body": [
+                        {
+                          "op": "var_decl",
+                          "name": "opt_b",
+                          "var_type": "Optional<Block>",
+                          "value": {
+                            "expr_type": "call",
+                            "func_name": "create_block_if_any",
+                            "args": [
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_kind"
+                              },
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_lines"
+                              }
+                            ]
+                          },
+                          "source_line": 145
+                        },
+                        {
+                          "op": "if_stmt",
+                          "condition": {
+                            "expr_type": "optional_is_nothing",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            },
+                            "negated": true
+                          },
+                          "then_body": [
+                            {
+                              "op": "list_append",
+                              "target": "blocks",
+                              "value": {
+                                "expr_type": "optional_unwrap",
+                                "target": {
+                                  "expr_type": "var_ref",
+                                  "name": "opt_b"
+                                }
+                              },
+                              "source_line": 147
+                            }
+                          ],
+                          "else_body": [],
+                          "source_line": 146
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "ol",
+                            "data_type": "String"
+                          },
+                          "source_line": 148
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_lines",
+                          "value": {
+                            "expr_type": "list_literal",
+                            "elements": [],
+                            "element_type": "String"
+                          },
+                          "source_line": 149
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 144
+                    },
+                    {
+                      "op": "var_decl",
+                      "name": "item_text",
+                      "var_type": "String",
+                      "value": {
+                        "expr_type": "string_slice",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        },
+                        "start": {
+                          "expr_type": "var_ref",
+                          "name": "ol_prefix_len"
+                        },
+                        "end": {
+                          "expr_type": "string_length",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          }
+                        }
+                      },
+                      "source_line": 150
+                    },
+                    {
+                      "op": "list_append",
+                      "target": "current_lines",
+                      "value": {
+                        "expr_type": "var_ref",
+                        "name": "item_text"
+                      },
+                      "source_line": 151
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 152
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 143
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "call",
+                    "func_name": "is_blockquote_line",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      }
+                    ]
+                  },
+                  "then_body": [
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "binary_op",
+                        "op": "!=",
+                        "left": {
+                          "expr_type": "var_ref",
+                          "name": "current_kind"
+                        },
+                        "right": {
+                          "expr_type": "literal",
+                          "value": "blockquote",
+                          "data_type": "String"
+                        }
+                      },
+                      "then_body": [
+                        {
+                          "op": "var_decl",
+                          "name": "opt_b",
+                          "var_type": "Optional<Block>",
+                          "value": {
+                            "expr_type": "call",
+                            "func_name": "create_block_if_any",
+                            "args": [
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_kind"
+                              },
+                              {
+                                "expr_type": "var_ref",
+                                "name": "current_lines"
+                              }
+                            ]
+                          },
+                          "source_line": 156
+                        },
+                        {
+                          "op": "if_stmt",
+                          "condition": {
+                            "expr_type": "optional_is_nothing",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            },
+                            "negated": true
+                          },
+                          "then_body": [
+                            {
+                              "op": "list_append",
+                              "target": "blocks",
+                              "value": {
+                                "expr_type": "optional_unwrap",
+                                "target": {
+                                  "expr_type": "var_ref",
+                                  "name": "opt_b"
+                                }
+                              },
+                              "source_line": 158
+                            }
+                          ],
+                          "else_body": [],
+                          "source_line": 157
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "blockquote",
+                            "data_type": "String"
+                          },
+                          "source_line": 159
+                        },
+                        {
+                          "op": "assign",
+                          "name": "current_lines",
+                          "value": {
+                            "expr_type": "list_literal",
+                            "elements": [],
+                            "element_type": "String"
+                          },
+                          "source_line": 160
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 155
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "str_starts_with",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        },
+                        "prefix": {
+                          "expr_type": "literal",
+                          "value": "> ",
+                          "data_type": "String"
+                        }
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "current_lines",
+                          "value": {
+                            "expr_type": "string_slice",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            },
+                            "start": {
+                              "expr_type": "literal",
+                              "value": 2,
+                              "data_type": "Int"
+                            },
+                            "end": {
+                              "expr_type": "string_length",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "line"
+                              }
+                            }
+                          },
+                          "source_line": 162
+                        }
+                      ],
+                      "else_body": [
+                        {
+                          "op": "list_append",
+                          "target": "current_lines",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          },
+                          "source_line": 164
+                        }
+                      ],
+                      "source_line": 161
+                    },
+                    {
+                      "op": "loop_continue",
+                      "source_line": 165
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 154
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "binary_op",
+                    "op": "!=",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "current_kind"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": "paragraph",
+                      "data_type": "String"
+                    }
+                  },
+                  "then_body": [
+                    {
+                      "op": "var_decl",
+                      "name": "opt_b",
+                      "var_type": "Optional<Block>",
+                      "value": {
+                        "expr_type": "call",
+                        "func_name": "create_block_if_any",
+                        "args": [
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          {
+                            "expr_type": "var_ref",
+                            "name": "current_lines"
+                          }
+                        ]
+                      },
+                      "source_line": 168
+                    },
+                    {
+                      "op": "if_stmt",
+                      "condition": {
+                        "expr_type": "optional_is_nothing",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        },
+                        "negated": true
+                      },
+                      "then_body": [
+                        {
+                          "op": "list_append",
+                          "target": "blocks",
+                          "value": {
+                            "expr_type": "optional_unwrap",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "opt_b"
+                            }
+                          },
+                          "source_line": 170
+                        }
+                      ],
+                      "else_body": [],
+                      "source_line": 169
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_kind",
+                      "value": {
+                        "expr_type": "literal",
+                        "value": "paragraph",
+                        "data_type": "String"
+                      },
+                      "source_line": 171
+                    },
+                    {
+                      "op": "assign",
+                      "name": "current_lines",
+                      "value": {
+                        "expr_type": "list_literal",
+                        "elements": [],
+                        "element_type": "String"
+                      },
+                      "source_line": 172
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 167
+                },
+                {
+                  "op": "list_append",
+                  "target": "current_lines",
+                  "value": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "source_line": 173
+                }
+              ],
+              "source_line": 82
+            },
+            {
+              "op": "if_stmt",
+              "condition": {
+                "expr_type": "var_ref",
+                "name": "in_code_block"
+              },
+              "then_body": [
+                {
+                  "op": "list_append",
+                  "target": "blocks",
+                  "value": {
+                    "expr_type": "record_literal",
+                    "record_name": "Block",
+                    "fields": [
+                      {
+                        "name": "kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "code",
+                          "data_type": "String"
+                        }
+                      },
+                      {
+                        "name": "content",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "",
+                          "data_type": "String"
+                        }
+                      },
+                      {
+                        "name": "level",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": 0,
+                          "data_type": "Int"
+                        }
+                      },
+                      {
+                        "name": "lines",
+                        "value": {
+                          "expr_type": "var_ref",
+                          "name": "code_lines"
+                        }
+                      }
+                    ]
+                  },
+                  "source_line": 176
+                }
+              ],
+              "else_body": [
+                {
+                  "op": "var_decl",
+                  "name": "opt_b",
+                  "var_type": "Optional<Block>",
+                  "value": {
+                    "expr_type": "call",
+                    "func_name": "create_block_if_any",
+                    "args": [
+                      {
+                        "expr_type": "var_ref",
+                        "name": "current_kind"
+                      },
+                      {
+                        "expr_type": "var_ref",
+                        "name": "current_lines"
+                      }
+                    ]
+                  },
+                  "source_line": 178
+                },
+                {
+                  "op": "if_stmt",
+                  "condition": {
+                    "expr_type": "optional_is_nothing",
+                    "target": {
+                      "expr_type": "var_ref",
+                      "name": "opt_b"
+                    },
+                    "negated": true
+                  },
+                  "then_body": [
+                    {
+                      "op": "list_append",
+                      "target": "blocks",
+                      "value": {
+                        "expr_type": "optional_unwrap",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "opt_b"
+                        }
+                      },
+                      "source_line": 180
+                    }
+                  ],
+                  "else_body": [],
+                  "source_line": 179
+                }
+              ],
+              "source_line": 175
+            },
+            {
+              "op": "return_stmt",
+              "value": {
+                "expr_type": "var_ref",
+                "name": "blocks"
+              },
+              "source_line": 182
+            }
+          ],
+          "source_line": 70
+        }
+      ],
+      "canonical_meme": "record Block:\n    kind: String\n    content: String\n    level: Int\n    lines: List<String>\nfunction get_heading_level(line: String) -> Int:\n    define len: Int as length of string line\n    if len < 2:\n        return 0\n    define i: Int as 0\n    while i < len and char at i of line == \"#\":\n        set i to i + 1\n    if i >= 1 and i <= 6:\n        if i < len and char at i of line == \" \":\n            return i\n    return 0\nfunction is_code_fence(line: String) -> Bool:\n    return line starts with \"```\"\nfunction is_hr(line: String) -> Bool:\n    define trimmed: String as trim line\n    define len: Int as length of string trimmed\n    if len < 3:\n        return false\n    for k from 0 to len - 1:\n        if char at k of trimmed != \"-\":\n            return false\n    return true\nfunction is_unordered_list_item(line: String) -> Bool:\n    return line starts with \"- \"\nfunction get_ordered_list_prefix_len(line: String) -> Int:\n    define len: Int as length of string line\n    if len < 3:\n        return 0\n    define dot_space_idx: Int as index of \". \" in line\n    if dot_space_idx <= 0:\n        return 0\n    for k from 0 to dot_space_idx - 1:\n        define ch: String as char at k of line\n        if not is digit ch:\n            return 0\n    return dot_space_idx + 2\nfunction is_blockquote_line(line: String) -> Bool:\n    if line starts with \"> \":\n        return true\n    if line == \">\":\n        return true\n    return false\nfunction create_block_if_any(kind: String, lines: List<String>) -> Optional<Block>:\n    if length of lines == 0:\n        return nothing\n    if kind == \"paragraph\":\n        return optional Block(kind=\"paragraph\", content=\"\", level=0, lines=lines)\n    if kind == \"blockquote\":\n        return optional Block(kind=\"blockquote\", content=\"\", level=0, lines=lines)\n    if kind == \"ul\":\n        return optional Block(kind=\"ul\", content=\"\", level=0, lines=lines)\n    if kind == \"ol\":\n        return optional Block(kind=\"ol\", content=\"\", level=0, lines=lines)\n    return nothing\nfunction parse_blocks(content: String) -> List<Block>:\n    define clean_content: String as replace \"\\r\" with \"\" in content\n    if length of string trim clean_content == 0:\n        return empty List<Block>\n    define list raw_lines as split clean_content by \"\\n\"\n    define list blocks as empty List<Block>\n    define list empty_lines as empty List<String>\n    define in_code_block: Bool as false\n    define list code_lines as empty List<String>\n    define current_kind: String as \"\"\n    define list current_lines as empty List<String>\n    for each line in raw_lines:\n        if in_code_block:\n            if is_code_fence(line):\n                set in_code_block to false\n                define cb: Block as Block(kind=\"code\", content=\"\", level=0, lines=code_lines)\n                append cb to blocks\n                set code_lines to empty List<String>\n            else:\n                append line to code_lines\n            continue\n        if is_code_fence(line):\n            define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n            if opt_b is not nothing:\n                append value of opt_b to blocks\n            set current_kind to \"\"\n            set current_lines to empty List<String>\n            set in_code_block to true\n            set code_lines to empty List<String>\n            continue\n        if length of string trim line == 0:\n            define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n            if opt_b is not nothing:\n                append value of opt_b to blocks\n            set current_kind to \"\"\n            set current_lines to empty List<String>\n            continue\n        define h_level: Int as get_heading_level(line)\n        if h_level > 0:\n            define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n            if opt_b is not nothing:\n                append value of opt_b to blocks\n            set current_kind to \"\"\n            set current_lines to empty List<String>\n            define h_text: String as trim slice line from h_level + 1 to length of string line\n            append Block(kind=\"heading\", content=h_text, level=h_level, lines=empty_lines) to blocks\n            continue\n        if is_hr(line):\n            define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n            if opt_b is not nothing:\n                append value of opt_b to blocks\n            set current_kind to \"\"\n            set current_lines to empty List<String>\n            append Block(kind=\"hr\", content=\"\", level=0, lines=empty_lines) to blocks\n            continue\n        if is_unordered_list_item(line):\n            if current_kind != \"ul\":\n                define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n                if opt_b is not nothing:\n                    append value of opt_b to blocks\n                set current_kind to \"ul\"\n                set current_lines to empty List<String>\n            define item_text: String as slice line from 2 to length of string line\n            append item_text to current_lines\n            continue\n        define ol_prefix_len: Int as get_ordered_list_prefix_len(line)\n        if ol_prefix_len > 0:\n            if current_kind != \"ol\":\n                define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n                if opt_b is not nothing:\n                    append value of opt_b to blocks\n                set current_kind to \"ol\"\n                set current_lines to empty List<String>\n            define item_text: String as slice line from ol_prefix_len to length of string line\n            append item_text to current_lines\n            continue\n        if is_blockquote_line(line):\n            if current_kind != \"blockquote\":\n                define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n                if opt_b is not nothing:\n                    append value of opt_b to blocks\n                set current_kind to \"blockquote\"\n                set current_lines to empty List<String>\n            if line starts with \"> \":\n                append slice line from 2 to length of string line to current_lines\n            else:\n                append \"\" to current_lines\n            continue\n        if current_kind != \"paragraph\":\n            define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n            if opt_b is not nothing:\n                append value of opt_b to blocks\n            set current_kind to \"paragraph\"\n            set current_lines to empty List<String>\n        append line to current_lines\n    if in_code_block:\n        append Block(kind=\"code\", content=\"\", level=0, lines=code_lines) to blocks\n    else:\n        define opt_b: Optional<Block> as create_block_if_any(current_kind, current_lines)\n        if opt_b is not nothing:\n            append value of opt_b to blocks\n    return blocks",
+      "ir": {
+        "statements": [
+          {
+            "op": "record_def",
+            "name": "Block",
+            "fields": [
+              {
+                "name": "kind",
+                "field_type": "String"
+              },
+              {
+                "name": "content",
+                "field_type": "String"
+              },
+              {
+                "name": "level",
+                "field_type": "Int"
+              },
+              {
+                "name": "lines",
+                "field_type": "List<String>"
+              }
+            ],
+            "source_line": 3
+          },
+          {
+            "op": "func_def",
+            "name": "get_heading_level",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Int",
+            "body": [
+              {
+                "op": "var_decl",
+                "name": "len",
+                "var_type": "Int",
+                "value": {
+                  "expr_type": "string_length",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  }
+                },
+                "source_line": 10
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "<",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "len"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 2,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    },
+                    "source_line": 12
+                  }
+                ],
+                "else_body": [],
+                "source_line": 11
+              },
+              {
+                "op": "var_decl",
+                "name": "i",
+                "var_type": "Int",
+                "value": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                },
+                "source_line": 13
+              },
+              {
+                "op": "while_loop",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "and",
+                  "left": {
+                    "expr_type": "binary_op",
+                    "op": "<",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "i"
+                    },
+                    "right": {
+                      "expr_type": "var_ref",
+                      "name": "len"
+                    }
+                  },
+                  "right": {
+                    "expr_type": "binary_op",
+                    "op": "==",
+                    "left": {
+                      "expr_type": "string_char_at",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      },
+                      "index": {
+                        "expr_type": "var_ref",
+                        "name": "i"
+                      }
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": "#",
+                      "data_type": "String"
+                    }
+                  }
+                },
+                "body": [
+                  {
+                    "op": "assign",
+                    "name": "i",
+                    "value": {
+                      "expr_type": "binary_op",
+                      "op": "+",
+                      "left": {
+                        "expr_type": "var_ref",
+                        "name": "i"
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": 1,
+                        "data_type": "Int"
+                      }
+                    },
+                    "source_line": 15
+                  }
+                ],
+                "source_line": 14
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "and",
+                  "left": {
+                    "expr_type": "binary_op",
+                    "op": ">=",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "i"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 1,
+                      "data_type": "Int"
+                    }
+                  },
+                  "right": {
+                    "expr_type": "binary_op",
+                    "op": "<=",
+                    "left": {
+                      "expr_type": "var_ref",
+                      "name": "i"
+                    },
+                    "right": {
+                      "expr_type": "literal",
+                      "value": 6,
+                      "data_type": "Int"
+                    }
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": "and",
+                      "left": {
+                        "expr_type": "binary_op",
+                        "op": "<",
+                        "left": {
+                          "expr_type": "var_ref",
+                          "name": "i"
+                        },
+                        "right": {
+                          "expr_type": "var_ref",
+                          "name": "len"
+                        }
+                      },
+                      "right": {
+                        "expr_type": "binary_op",
+                        "op": "==",
+                        "left": {
+                          "expr_type": "string_char_at",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "index": {
+                            "expr_type": "var_ref",
+                            "name": "i"
+                          }
+                        },
+                        "right": {
+                          "expr_type": "literal",
+                          "value": " ",
+                          "data_type": "String"
+                        }
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "return_stmt",
+                        "value": {
+                          "expr_type": "var_ref",
+                          "name": "i"
+                        },
+                        "source_line": 18
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 17
+                  }
+                ],
+                "else_body": [],
+                "source_line": 16
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                },
+                "source_line": 19
+              }
+            ],
+            "source_line": 9
+          },
+          {
+            "op": "func_def",
+            "name": "is_code_fence",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Bool",
+            "body": [
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "str_starts_with",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "prefix": {
+                    "expr_type": "literal",
+                    "value": "```",
+                    "data_type": "String"
+                  }
+                },
+                "source_line": 22
+              }
+            ],
+            "source_line": 21
+          },
+          {
+            "op": "func_def",
+            "name": "is_hr",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Bool",
+            "body": [
+              {
+                "op": "var_decl",
+                "name": "trimmed",
+                "var_type": "String",
+                "value": {
+                  "expr_type": "string_trim",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  }
+                },
+                "source_line": 25
+              },
+              {
+                "op": "var_decl",
+                "name": "len",
+                "var_type": "Int",
+                "value": {
+                  "expr_type": "string_length",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "trimmed"
+                  }
+                },
+                "source_line": 26
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "<",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "len"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 3,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": false,
+                      "data_type": "Bool"
+                    },
+                    "source_line": 28
+                  }
+                ],
+                "else_body": [],
+                "source_line": 27
+              },
+              {
+                "op": "for_range",
+                "loop_var": "k",
+                "start": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                },
+                "end": {
+                  "expr_type": "binary_op",
+                  "op": "-",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "len"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 1,
+                    "data_type": "Int"
+                  }
+                },
+                "body": [
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": "!=",
+                      "left": {
+                        "expr_type": "string_char_at",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "trimmed"
+                        },
+                        "index": {
+                          "expr_type": "var_ref",
+                          "name": "k"
+                        }
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": "-",
+                        "data_type": "String"
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "return_stmt",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": false,
+                          "data_type": "Bool"
+                        },
+                        "source_line": 31
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 30
+                  }
+                ],
+                "source_line": 29
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "literal",
+                  "value": true,
+                  "data_type": "Bool"
+                },
+                "source_line": 32
+              }
+            ],
+            "source_line": 24
+          },
+          {
+            "op": "func_def",
+            "name": "is_unordered_list_item",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Bool",
+            "body": [
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "str_starts_with",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "prefix": {
+                    "expr_type": "literal",
+                    "value": "- ",
+                    "data_type": "String"
+                  }
+                },
+                "source_line": 35
+              }
+            ],
+            "source_line": 34
+          },
+          {
+            "op": "func_def",
+            "name": "get_ordered_list_prefix_len",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Int",
+            "body": [
+              {
+                "op": "var_decl",
+                "name": "len",
+                "var_type": "Int",
+                "value": {
+                  "expr_type": "string_length",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  }
+                },
+                "source_line": 38
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "<",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "len"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 3,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    },
+                    "source_line": 40
+                  }
+                ],
+                "else_body": [],
+                "source_line": 39
+              },
+              {
+                "op": "var_decl",
+                "name": "dot_space_idx",
+                "var_type": "Int",
+                "value": {
+                  "expr_type": "string_index_of",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "substring": {
+                    "expr_type": "literal",
+                    "value": ". ",
+                    "data_type": "String"
+                  }
+                },
+                "source_line": 41
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "<=",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "dot_space_idx"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": 0,
+                      "data_type": "Int"
+                    },
+                    "source_line": 43
+                  }
+                ],
+                "else_body": [],
+                "source_line": 42
+              },
+              {
+                "op": "for_range",
+                "loop_var": "k",
+                "start": {
+                  "expr_type": "literal",
+                  "value": 0,
+                  "data_type": "Int"
+                },
+                "end": {
+                  "expr_type": "binary_op",
+                  "op": "-",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "dot_space_idx"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 1,
+                    "data_type": "Int"
+                  }
+                },
+                "body": [
+                  {
+                    "op": "var_decl",
+                    "name": "ch",
+                    "var_type": "String",
+                    "value": {
+                      "expr_type": "string_char_at",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "line"
+                      },
+                      "index": {
+                        "expr_type": "var_ref",
+                        "name": "k"
+                      }
+                    },
+                    "source_line": 45
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "unary_op",
+                      "op": "not",
+                      "operand": {
+                        "expr_type": "is_digit",
+                        "target": {
+                          "expr_type": "var_ref",
+                          "name": "ch"
+                        }
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "return_stmt",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": 0,
+                          "data_type": "Int"
+                        },
+                        "source_line": 47
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 46
+                  }
+                ],
+                "source_line": 44
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "binary_op",
+                  "op": "+",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "dot_space_idx"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 2,
+                    "data_type": "Int"
+                  }
+                },
+                "source_line": 48
+              }
+            ],
+            "source_line": 37
+          },
+          {
+            "op": "func_def",
+            "name": "is_blockquote_line",
+            "params": [
+              {
+                "name": "line",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "Bool",
+            "body": [
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "str_starts_with",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "prefix": {
+                    "expr_type": "literal",
+                    "value": "> ",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": true,
+                      "data_type": "Bool"
+                    },
+                    "source_line": 52
+                  }
+                ],
+                "else_body": [],
+                "source_line": 51
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "line"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": ">",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "literal",
+                      "value": true,
+                      "data_type": "Bool"
+                    },
+                    "source_line": 54
+                  }
+                ],
+                "else_body": [],
+                "source_line": 53
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "literal",
+                  "value": false,
+                  "data_type": "Bool"
+                },
+                "source_line": 55
+              }
+            ],
+            "source_line": 50
+          },
+          {
+            "op": "func_def",
+            "name": "create_block_if_any",
+            "params": [
+              {
+                "name": "kind",
+                "param_type": "String"
+              },
+              {
+                "name": "lines",
+                "param_type": "List<String>"
+              }
+            ],
+            "return_type": "Optional<Block>",
+            "body": [
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "list_length",
+                    "target": {
+                      "expr_type": "var_ref",
+                      "name": "lines"
+                    }
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "optional_none"
+                    },
+                    "source_line": 59
+                  }
+                ],
+                "else_body": [],
+                "source_line": 58
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "kind"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": "paragraph",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "optional_wrap",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "paragraph",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": 0,
+                              "data_type": "Int"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "lines"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_line": 61
+                  }
+                ],
+                "else_body": [],
+                "source_line": 60
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "kind"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": "blockquote",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "optional_wrap",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "blockquote",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": 0,
+                              "data_type": "Int"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "lines"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_line": 63
+                  }
+                ],
+                "else_body": [],
+                "source_line": 62
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "kind"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": "ul",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "optional_wrap",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "ul",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": 0,
+                              "data_type": "Int"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "lines"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_line": 65
+                  }
+                ],
+                "else_body": [],
+                "source_line": 64
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "var_ref",
+                    "name": "kind"
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": "ol",
+                    "data_type": "String"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "optional_wrap",
+                      "value": {
+                        "expr_type": "record_literal",
+                        "record_name": "Block",
+                        "fields": [
+                          {
+                            "name": "kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "ol",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "content",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            }
+                          },
+                          {
+                            "name": "level",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": 0,
+                              "data_type": "Int"
+                            }
+                          },
+                          {
+                            "name": "lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "lines"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_line": 67
+                  }
+                ],
+                "else_body": [],
+                "source_line": 66
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "optional_none"
+                },
+                "source_line": 68
+              }
+            ],
+            "source_line": 57
+          },
+          {
+            "op": "func_def",
+            "name": "parse_blocks",
+            "params": [
+              {
+                "name": "content",
+                "param_type": "String"
+              }
+            ],
+            "return_type": "List<Block>",
+            "body": [
+              {
+                "op": "var_decl",
+                "name": "clean_content",
+                "var_type": "String",
+                "value": {
+                  "expr_type": "string_replace",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "content"
+                  },
+                  "old": {
+                    "expr_type": "literal",
+                    "value": "\r",
+                    "data_type": "String"
+                  },
+                  "new": {
+                    "expr_type": "literal",
+                    "value": "",
+                    "data_type": "String"
+                  }
+                },
+                "source_line": 71
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "binary_op",
+                  "op": "==",
+                  "left": {
+                    "expr_type": "string_length",
+                    "target": {
+                      "expr_type": "string_trim",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "clean_content"
+                      }
+                    }
+                  },
+                  "right": {
+                    "expr_type": "literal",
+                    "value": 0,
+                    "data_type": "Int"
+                  }
+                },
+                "then_body": [
+                  {
+                    "op": "return_stmt",
+                    "value": {
+                      "expr_type": "list_literal",
+                      "elements": [],
+                      "element_type": "Block"
+                    },
+                    "source_line": 73
+                  }
+                ],
+                "else_body": [],
+                "source_line": 72
+              },
+              {
+                "op": "var_decl",
+                "name": "raw_lines",
+                "var_type": "List<String>",
+                "value": {
+                  "expr_type": "string_split",
+                  "target": {
+                    "expr_type": "var_ref",
+                    "name": "clean_content"
+                  },
+                  "separator": {
+                    "expr_type": "literal",
+                    "value": "\n",
+                    "data_type": "String"
+                  }
+                },
+                "source_line": 74
+              },
+              {
+                "op": "var_decl",
+                "name": "blocks",
+                "var_type": "List<Block>",
+                "value": {
+                  "expr_type": "list_literal",
+                  "elements": [],
+                  "element_type": "Block"
+                },
+                "source_line": 75
+              },
+              {
+                "op": "var_decl",
+                "name": "empty_lines",
+                "var_type": "List<String>",
+                "value": {
+                  "expr_type": "list_literal",
+                  "elements": [],
+                  "element_type": "String"
+                },
+                "source_line": 76
+              },
+              {
+                "op": "var_decl",
+                "name": "in_code_block",
+                "var_type": "Bool",
+                "value": {
+                  "expr_type": "literal",
+                  "value": false,
+                  "data_type": "Bool"
+                },
+                "source_line": 77
+              },
+              {
+                "op": "var_decl",
+                "name": "code_lines",
+                "var_type": "List<String>",
+                "value": {
+                  "expr_type": "list_literal",
+                  "elements": [],
+                  "element_type": "String"
+                },
+                "source_line": 78
+              },
+              {
+                "op": "var_decl",
+                "name": "current_kind",
+                "var_type": "String",
+                "value": {
+                  "expr_type": "literal",
+                  "value": "",
+                  "data_type": "String"
+                },
+                "source_line": 79
+              },
+              {
+                "op": "var_decl",
+                "name": "current_lines",
+                "var_type": "List<String>",
+                "value": {
+                  "expr_type": "list_literal",
+                  "elements": [],
+                  "element_type": "String"
+                },
+                "source_line": 80
+              },
+              {
+                "op": "for_each",
+                "item_var": "line",
+                "index_var": null,
+                "collection": "raw_lines",
+                "body": [
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "var_ref",
+                      "name": "in_code_block"
+                    },
+                    "then_body": [
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "call",
+                          "func_name": "is_code_fence",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            }
+                          ]
+                        },
+                        "then_body": [
+                          {
+                            "op": "assign",
+                            "name": "in_code_block",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": false,
+                              "data_type": "Bool"
+                            },
+                            "source_line": 85
+                          },
+                          {
+                            "op": "var_decl",
+                            "name": "cb",
+                            "var_type": "Block",
+                            "value": {
+                              "expr_type": "record_literal",
+                              "record_name": "Block",
+                              "fields": [
+                                {
+                                  "name": "kind",
+                                  "value": {
+                                    "expr_type": "literal",
+                                    "value": "code",
+                                    "data_type": "String"
+                                  }
+                                },
+                                {
+                                  "name": "content",
+                                  "value": {
+                                    "expr_type": "literal",
+                                    "value": "",
+                                    "data_type": "String"
+                                  }
+                                },
+                                {
+                                  "name": "level",
+                                  "value": {
+                                    "expr_type": "literal",
+                                    "value": 0,
+                                    "data_type": "Int"
+                                  }
+                                },
+                                {
+                                  "name": "lines",
+                                  "value": {
+                                    "expr_type": "var_ref",
+                                    "name": "code_lines"
+                                  }
+                                }
+                              ]
+                            },
+                            "source_line": 86
+                          },
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "cb"
+                            },
+                            "source_line": 87
+                          },
+                          {
+                            "op": "assign",
+                            "name": "code_lines",
+                            "value": {
+                              "expr_type": "list_literal",
+                              "elements": [],
+                              "element_type": "String"
+                            },
+                            "source_line": 88
+                          }
+                        ],
+                        "else_body": [
+                          {
+                            "op": "list_append",
+                            "target": "code_lines",
+                            "value": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            },
+                            "source_line": 90
+                          }
+                        ],
+                        "source_line": 84
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 91
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 83
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "call",
+                      "func_name": "is_code_fence",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "then_body": [
+                      {
+                        "op": "var_decl",
+                        "name": "opt_b",
+                        "var_type": "Optional<Block>",
+                        "value": {
+                          "expr_type": "call",
+                          "func_name": "create_block_if_any",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_kind"
+                            },
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_lines"
+                            }
+                          ]
+                        },
+                        "source_line": 94
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "optional_is_nothing",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          },
+                          "negated": true
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "optional_unwrap",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              }
+                            },
+                            "source_line": 96
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 95
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "",
+                          "data_type": "String"
+                        },
+                        "source_line": 97
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 98
+                      },
+                      {
+                        "op": "assign",
+                        "name": "in_code_block",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": true,
+                          "data_type": "Bool"
+                        },
+                        "source_line": 99
+                      },
+                      {
+                        "op": "assign",
+                        "name": "code_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 100
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 101
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 93
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": "==",
+                      "left": {
+                        "expr_type": "string_length",
+                        "target": {
+                          "expr_type": "string_trim",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          }
+                        }
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": 0,
+                        "data_type": "Int"
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "var_decl",
+                        "name": "opt_b",
+                        "var_type": "Optional<Block>",
+                        "value": {
+                          "expr_type": "call",
+                          "func_name": "create_block_if_any",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_kind"
+                            },
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_lines"
+                            }
+                          ]
+                        },
+                        "source_line": 104
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "optional_is_nothing",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          },
+                          "negated": true
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "optional_unwrap",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              }
+                            },
+                            "source_line": 106
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 105
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "",
+                          "data_type": "String"
+                        },
+                        "source_line": 107
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 108
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 109
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 103
+                  },
+                  {
+                    "op": "var_decl",
+                    "name": "h_level",
+                    "var_type": "Int",
+                    "value": {
+                      "expr_type": "call",
+                      "func_name": "get_heading_level",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "source_line": 111
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": ">",
+                      "left": {
+                        "expr_type": "var_ref",
+                        "name": "h_level"
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": 0,
+                        "data_type": "Int"
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "var_decl",
+                        "name": "opt_b",
+                        "var_type": "Optional<Block>",
+                        "value": {
+                          "expr_type": "call",
+                          "func_name": "create_block_if_any",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_kind"
+                            },
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_lines"
+                            }
+                          ]
+                        },
+                        "source_line": 113
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "optional_is_nothing",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          },
+                          "negated": true
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "optional_unwrap",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              }
+                            },
+                            "source_line": 115
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 114
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "",
+                          "data_type": "String"
+                        },
+                        "source_line": 116
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 117
+                      },
+                      {
+                        "op": "var_decl",
+                        "name": "h_text",
+                        "var_type": "String",
+                        "value": {
+                          "expr_type": "string_trim",
+                          "target": {
+                            "expr_type": "string_slice",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            },
+                            "start": {
+                              "expr_type": "binary_op",
+                              "op": "+",
+                              "left": {
+                                "expr_type": "var_ref",
+                                "name": "h_level"
+                              },
+                              "right": {
+                                "expr_type": "literal",
+                                "value": 1,
+                                "data_type": "Int"
+                              }
+                            },
+                            "end": {
+                              "expr_type": "string_length",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "line"
+                              }
+                            }
+                          }
+                        },
+                        "source_line": 118
+                      },
+                      {
+                        "op": "list_append",
+                        "target": "blocks",
+                        "value": {
+                          "expr_type": "record_literal",
+                          "record_name": "Block",
+                          "fields": [
+                            {
+                              "name": "kind",
+                              "value": {
+                                "expr_type": "literal",
+                                "value": "heading",
+                                "data_type": "String"
+                              }
+                            },
+                            {
+                              "name": "content",
+                              "value": {
+                                "expr_type": "var_ref",
+                                "name": "h_text"
+                              }
+                            },
+                            {
+                              "name": "level",
+                              "value": {
+                                "expr_type": "var_ref",
+                                "name": "h_level"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "value": {
+                                "expr_type": "var_ref",
+                                "name": "empty_lines"
+                              }
+                            }
+                          ]
+                        },
+                        "source_line": 119
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 120
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 112
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "call",
+                      "func_name": "is_hr",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "then_body": [
+                      {
+                        "op": "var_decl",
+                        "name": "opt_b",
+                        "var_type": "Optional<Block>",
+                        "value": {
+                          "expr_type": "call",
+                          "func_name": "create_block_if_any",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_kind"
+                            },
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_lines"
+                            }
+                          ]
+                        },
+                        "source_line": 123
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "optional_is_nothing",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          },
+                          "negated": true
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "optional_unwrap",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              }
+                            },
+                            "source_line": 125
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 124
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "",
+                          "data_type": "String"
+                        },
+                        "source_line": 126
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 127
+                      },
+                      {
+                        "op": "list_append",
+                        "target": "blocks",
+                        "value": {
+                          "expr_type": "record_literal",
+                          "record_name": "Block",
+                          "fields": [
+                            {
+                              "name": "kind",
+                              "value": {
+                                "expr_type": "literal",
+                                "value": "hr",
+                                "data_type": "String"
+                              }
+                            },
+                            {
+                              "name": "content",
+                              "value": {
+                                "expr_type": "literal",
+                                "value": "",
+                                "data_type": "String"
+                              }
+                            },
+                            {
+                              "name": "level",
+                              "value": {
+                                "expr_type": "literal",
+                                "value": 0,
+                                "data_type": "Int"
+                              }
+                            },
+                            {
+                              "name": "lines",
+                              "value": {
+                                "expr_type": "var_ref",
+                                "name": "empty_lines"
+                              }
+                            }
+                          ]
+                        },
+                        "source_line": 128
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 129
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 122
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "call",
+                      "func_name": "is_unordered_list_item",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "then_body": [
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "binary_op",
+                          "op": "!=",
+                          "left": {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          "right": {
+                            "expr_type": "literal",
+                            "value": "ul",
+                            "data_type": "String"
+                          }
+                        },
+                        "then_body": [
+                          {
+                            "op": "var_decl",
+                            "name": "opt_b",
+                            "var_type": "Optional<Block>",
+                            "value": {
+                              "expr_type": "call",
+                              "func_name": "create_block_if_any",
+                              "args": [
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_kind"
+                                },
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_lines"
+                                }
+                              ]
+                            },
+                            "source_line": 133
+                          },
+                          {
+                            "op": "if_stmt",
+                            "condition": {
+                              "expr_type": "optional_is_nothing",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              },
+                              "negated": true
+                            },
+                            "then_body": [
+                              {
+                                "op": "list_append",
+                                "target": "blocks",
+                                "value": {
+                                  "expr_type": "optional_unwrap",
+                                  "target": {
+                                    "expr_type": "var_ref",
+                                    "name": "opt_b"
+                                  }
+                                },
+                                "source_line": 135
+                              }
+                            ],
+                            "else_body": [],
+                            "source_line": 134
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "ul",
+                              "data_type": "String"
+                            },
+                            "source_line": 136
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_lines",
+                            "value": {
+                              "expr_type": "list_literal",
+                              "elements": [],
+                              "element_type": "String"
+                            },
+                            "source_line": 137
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 132
+                      },
+                      {
+                        "op": "var_decl",
+                        "name": "item_text",
+                        "var_type": "String",
+                        "value": {
+                          "expr_type": "string_slice",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "start": {
+                            "expr_type": "literal",
+                            "value": 2,
+                            "data_type": "Int"
+                          },
+                          "end": {
+                            "expr_type": "string_length",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            }
+                          }
+                        },
+                        "source_line": 138
+                      },
+                      {
+                        "op": "list_append",
+                        "target": "current_lines",
+                        "value": {
+                          "expr_type": "var_ref",
+                          "name": "item_text"
+                        },
+                        "source_line": 139
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 140
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 131
+                  },
+                  {
+                    "op": "var_decl",
+                    "name": "ol_prefix_len",
+                    "var_type": "Int",
+                    "value": {
+                      "expr_type": "call",
+                      "func_name": "get_ordered_list_prefix_len",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "source_line": 142
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": ">",
+                      "left": {
+                        "expr_type": "var_ref",
+                        "name": "ol_prefix_len"
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": 0,
+                        "data_type": "Int"
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "binary_op",
+                          "op": "!=",
+                          "left": {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          "right": {
+                            "expr_type": "literal",
+                            "value": "ol",
+                            "data_type": "String"
+                          }
+                        },
+                        "then_body": [
+                          {
+                            "op": "var_decl",
+                            "name": "opt_b",
+                            "var_type": "Optional<Block>",
+                            "value": {
+                              "expr_type": "call",
+                              "func_name": "create_block_if_any",
+                              "args": [
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_kind"
+                                },
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_lines"
+                                }
+                              ]
+                            },
+                            "source_line": 145
+                          },
+                          {
+                            "op": "if_stmt",
+                            "condition": {
+                              "expr_type": "optional_is_nothing",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              },
+                              "negated": true
+                            },
+                            "then_body": [
+                              {
+                                "op": "list_append",
+                                "target": "blocks",
+                                "value": {
+                                  "expr_type": "optional_unwrap",
+                                  "target": {
+                                    "expr_type": "var_ref",
+                                    "name": "opt_b"
+                                  }
+                                },
+                                "source_line": 147
+                              }
+                            ],
+                            "else_body": [],
+                            "source_line": 146
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "ol",
+                              "data_type": "String"
+                            },
+                            "source_line": 148
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_lines",
+                            "value": {
+                              "expr_type": "list_literal",
+                              "elements": [],
+                              "element_type": "String"
+                            },
+                            "source_line": 149
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 144
+                      },
+                      {
+                        "op": "var_decl",
+                        "name": "item_text",
+                        "var_type": "String",
+                        "value": {
+                          "expr_type": "string_slice",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "start": {
+                            "expr_type": "var_ref",
+                            "name": "ol_prefix_len"
+                          },
+                          "end": {
+                            "expr_type": "string_length",
+                            "target": {
+                              "expr_type": "var_ref",
+                              "name": "line"
+                            }
+                          }
+                        },
+                        "source_line": 150
+                      },
+                      {
+                        "op": "list_append",
+                        "target": "current_lines",
+                        "value": {
+                          "expr_type": "var_ref",
+                          "name": "item_text"
+                        },
+                        "source_line": 151
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 152
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 143
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "call",
+                      "func_name": "is_blockquote_line",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "line"
+                        }
+                      ]
+                    },
+                    "then_body": [
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "binary_op",
+                          "op": "!=",
+                          "left": {
+                            "expr_type": "var_ref",
+                            "name": "current_kind"
+                          },
+                          "right": {
+                            "expr_type": "literal",
+                            "value": "blockquote",
+                            "data_type": "String"
+                          }
+                        },
+                        "then_body": [
+                          {
+                            "op": "var_decl",
+                            "name": "opt_b",
+                            "var_type": "Optional<Block>",
+                            "value": {
+                              "expr_type": "call",
+                              "func_name": "create_block_if_any",
+                              "args": [
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_kind"
+                                },
+                                {
+                                  "expr_type": "var_ref",
+                                  "name": "current_lines"
+                                }
+                              ]
+                            },
+                            "source_line": 156
+                          },
+                          {
+                            "op": "if_stmt",
+                            "condition": {
+                              "expr_type": "optional_is_nothing",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              },
+                              "negated": true
+                            },
+                            "then_body": [
+                              {
+                                "op": "list_append",
+                                "target": "blocks",
+                                "value": {
+                                  "expr_type": "optional_unwrap",
+                                  "target": {
+                                    "expr_type": "var_ref",
+                                    "name": "opt_b"
+                                  }
+                                },
+                                "source_line": 158
+                              }
+                            ],
+                            "else_body": [],
+                            "source_line": 157
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_kind",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "blockquote",
+                              "data_type": "String"
+                            },
+                            "source_line": 159
+                          },
+                          {
+                            "op": "assign",
+                            "name": "current_lines",
+                            "value": {
+                              "expr_type": "list_literal",
+                              "elements": [],
+                              "element_type": "String"
+                            },
+                            "source_line": 160
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 155
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "str_starts_with",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "line"
+                          },
+                          "prefix": {
+                            "expr_type": "literal",
+                            "value": "> ",
+                            "data_type": "String"
+                          }
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "current_lines",
+                            "value": {
+                              "expr_type": "string_slice",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "line"
+                              },
+                              "start": {
+                                "expr_type": "literal",
+                                "value": 2,
+                                "data_type": "Int"
+                              },
+                              "end": {
+                                "expr_type": "string_length",
+                                "target": {
+                                  "expr_type": "var_ref",
+                                  "name": "line"
+                                }
+                              }
+                            },
+                            "source_line": 162
+                          }
+                        ],
+                        "else_body": [
+                          {
+                            "op": "list_append",
+                            "target": "current_lines",
+                            "value": {
+                              "expr_type": "literal",
+                              "value": "",
+                              "data_type": "String"
+                            },
+                            "source_line": 164
+                          }
+                        ],
+                        "source_line": 161
+                      },
+                      {
+                        "op": "loop_continue",
+                        "source_line": 165
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 154
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "binary_op",
+                      "op": "!=",
+                      "left": {
+                        "expr_type": "var_ref",
+                        "name": "current_kind"
+                      },
+                      "right": {
+                        "expr_type": "literal",
+                        "value": "paragraph",
+                        "data_type": "String"
+                      }
+                    },
+                    "then_body": [
+                      {
+                        "op": "var_decl",
+                        "name": "opt_b",
+                        "var_type": "Optional<Block>",
+                        "value": {
+                          "expr_type": "call",
+                          "func_name": "create_block_if_any",
+                          "args": [
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_kind"
+                            },
+                            {
+                              "expr_type": "var_ref",
+                              "name": "current_lines"
+                            }
+                          ]
+                        },
+                        "source_line": 168
+                      },
+                      {
+                        "op": "if_stmt",
+                        "condition": {
+                          "expr_type": "optional_is_nothing",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          },
+                          "negated": true
+                        },
+                        "then_body": [
+                          {
+                            "op": "list_append",
+                            "target": "blocks",
+                            "value": {
+                              "expr_type": "optional_unwrap",
+                              "target": {
+                                "expr_type": "var_ref",
+                                "name": "opt_b"
+                              }
+                            },
+                            "source_line": 170
+                          }
+                        ],
+                        "else_body": [],
+                        "source_line": 169
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_kind",
+                        "value": {
+                          "expr_type": "literal",
+                          "value": "paragraph",
+                          "data_type": "String"
+                        },
+                        "source_line": 171
+                      },
+                      {
+                        "op": "assign",
+                        "name": "current_lines",
+                        "value": {
+                          "expr_type": "list_literal",
+                          "elements": [],
+                          "element_type": "String"
+                        },
+                        "source_line": 172
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 167
+                  },
+                  {
+                    "op": "list_append",
+                    "target": "current_lines",
+                    "value": {
+                      "expr_type": "var_ref",
+                      "name": "line"
+                    },
+                    "source_line": 173
+                  }
+                ],
+                "source_line": 82
+              },
+              {
+                "op": "if_stmt",
+                "condition": {
+                  "expr_type": "var_ref",
+                  "name": "in_code_block"
+                },
+                "then_body": [
+                  {
+                    "op": "list_append",
+                    "target": "blocks",
+                    "value": {
+                      "expr_type": "record_literal",
+                      "record_name": "Block",
+                      "fields": [
+                        {
+                          "name": "kind",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "code",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "content",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": "",
+                            "data_type": "String"
+                          }
+                        },
+                        {
+                          "name": "level",
+                          "value": {
+                            "expr_type": "literal",
+                            "value": 0,
+                            "data_type": "Int"
+                          }
+                        },
+                        {
+                          "name": "lines",
+                          "value": {
+                            "expr_type": "var_ref",
+                            "name": "code_lines"
+                          }
+                        }
+                      ]
+                    },
+                    "source_line": 176
+                  }
+                ],
+                "else_body": [
+                  {
+                    "op": "var_decl",
+                    "name": "opt_b",
+                    "var_type": "Optional<Block>",
+                    "value": {
+                      "expr_type": "call",
+                      "func_name": "create_block_if_any",
+                      "args": [
+                        {
+                          "expr_type": "var_ref",
+                          "name": "current_kind"
+                        },
+                        {
+                          "expr_type": "var_ref",
+                          "name": "current_lines"
+                        }
+                      ]
+                    },
+                    "source_line": 178
+                  },
+                  {
+                    "op": "if_stmt",
+                    "condition": {
+                      "expr_type": "optional_is_nothing",
+                      "target": {
+                        "expr_type": "var_ref",
+                        "name": "opt_b"
+                      },
+                      "negated": true
+                    },
+                    "then_body": [
+                      {
+                        "op": "list_append",
+                        "target": "blocks",
+                        "value": {
+                          "expr_type": "optional_unwrap",
+                          "target": {
+                            "expr_type": "var_ref",
+                            "name": "opt_b"
+                          }
+                        },
+                        "source_line": 180
+                      }
+                    ],
+                    "else_body": [],
+                    "source_line": 179
+                  }
+                ],
+                "source_line": 175
+              },
+              {
+                "op": "return_stmt",
+                "value": {
+                  "expr_type": "var_ref",
+                  "name": "blocks"
+                },
+                "source_line": 182
+              }
+            ],
+            "source_line": 70
+          }
+        ],
+        "imported_definitions": [],
+        "module_files": {}
+      },
+      "module_files": {}
+    }
+  }
+}

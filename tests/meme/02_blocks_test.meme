@@ -1,0 +1,82 @@
+use md_block
+
+test heading_level_test:
+    assert get_heading_level("# Heading 1") == 1
+    assert get_heading_level("## Heading 2") == 2
+    assert get_heading_level("### Heading 3") == 3
+    assert get_heading_level("#### Heading 4") == 4
+    assert get_heading_level("##### Heading 5") == 5
+    assert get_heading_level("###### Heading 6") == 6
+    assert get_heading_level("#NoSpace") == 0
+    assert get_heading_level("####### Seven") == 0
+
+test hr_test:
+    assert is_hr("---") == true
+    assert is_hr("-----") == true
+    assert is_hr("--") == false
+    assert is_hr("- item") == false
+
+test parse_headings_test:
+    define b as parse_blocks("# Level 1\n## Level 2")
+    assert length of b == 2
+    assert b[0].kind == "heading"
+    assert b[0].level == 1
+    assert b[0].content == "Level 1"
+    assert b[1].kind == "heading"
+    assert b[1].level == 2
+    assert b[1].content == "Level 2"
+
+test parse_code_fence_test:
+    define content as "```python\ndef foo():\n    return 42\n```"
+    define b as parse_blocks(content)
+    assert length of b == 1
+    assert b[0].kind == "code"
+    assert length of b[0].lines == 2
+    assert b[0].lines[0] == "def foo():"
+    assert b[0].lines[1] == "    return 42"
+
+test parse_lists_test:
+    define content as "- Item 1\n- Item 2\n\n1. First\n2. Second"
+    define b as parse_blocks(content)
+    assert length of b == 2
+    assert b[0].kind == "ul"
+    assert length of b[0].lines == 2
+    assert b[0].lines[0] == "Item 1"
+    assert b[0].lines[1] == "Item 2"
+    assert b[1].kind == "ol"
+    assert length of b[1].lines == 2
+    assert b[1].lines[0] == "First"
+    assert b[1].lines[1] == "Second"
+
+test parse_blockquote_test:
+    define content as "> Line 1\n> Line 2"
+    define b as parse_blocks(content)
+    assert length of b == 1
+    assert b[0].kind == "blockquote"
+    assert length of b[0].lines == 2
+    assert b[0].lines[0] == "Line 1"
+    assert b[0].lines[1] == "Line 2"
+
+test parse_paragraphs_test:
+    define content as "Para 1 line 1\nPara 1 line 2\n\nPara 2"
+    define b as parse_blocks(content)
+    assert length of b == 2
+    assert b[0].kind == "paragraph"
+    assert length of b[0].lines == 2
+    assert b[0].lines[0] == "Para 1 line 1"
+    assert b[0].lines[1] == "Para 1 line 2"
+    assert b[1].kind == "paragraph"
+    assert length of b[1].lines == 1
+    assert b[1].lines[0] == "Para 2"
+
+test parse_hr_test:
+    define content as "Before\n---\nAfter"
+    define b as parse_blocks(content)
+    assert length of b == 3
+    assert b[0].kind == "paragraph"
+    assert b[1].kind == "hr"
+    assert b[2].kind == "paragraph"
+
+test parse_empty_test:
+    define b as parse_blocks("")
+    assert length of b == 0

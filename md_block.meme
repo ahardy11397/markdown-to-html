@@ -1,0 +1,182 @@
+# md_block.meme - Block Parser for Markdown
+
+record Block:
+    kind: String
+    content: String
+    level: Int
+    lines: List<String>
+
+function get_heading_level(line: String) -> Int:
+    define len as length of string line
+    if len < 2:
+        return 0
+    define i as 0
+    while i < len and char at i of line == "#":
+        set i to i + 1
+    if i >= 1 and i <= 6:
+        if i < len and char at i of line == " ":
+            return i
+    return 0
+
+function is_code_fence(line: String) -> Bool:
+    return line starts with "```"
+
+function is_hr(line: String) -> Bool:
+    define trimmed as trim line
+    define len as length of string trimmed
+    if len < 3:
+        return false
+    for k from 0 to len - 1:
+        if char at k of trimmed != "-":
+            return false
+    return true
+
+function is_unordered_list_item(line: String) -> Bool:
+    return line starts with "- "
+
+function get_ordered_list_prefix_len(line: String) -> Int:
+    define len as length of string line
+    if len < 3:
+        return 0
+    define dot_space_idx as index of ". " in line
+    if dot_space_idx <= 0:
+        return 0
+    for k from 0 to dot_space_idx - 1:
+        define ch as char at k of line
+        if not (is digit ch):
+            return 0
+    return dot_space_idx + 2
+
+function is_blockquote_line(line: String) -> Bool:
+    if line starts with "> ":
+        return true
+    if line == ">":
+        return true
+    return false
+
+function create_block_if_any(kind: String, lines: List<String>) -> Optional<Block>:
+    if length of lines == 0:
+        return nothing
+    if kind == "paragraph":
+        return optional Block(kind="paragraph", content="", level=0, lines=lines)
+    if kind == "blockquote":
+        return optional Block(kind="blockquote", content="", level=0, lines=lines)
+    if kind == "ul":
+        return optional Block(kind="ul", content="", level=0, lines=lines)
+    if kind == "ol":
+        return optional Block(kind="ol", content="", level=0, lines=lines)
+    return nothing
+
+function parse_blocks(content: String) -> List<Block>:
+    define clean_content as replace "\r" with "" in content
+    if length of string trim clean_content == 0:
+        return empty List<Block>
+    define raw_lines as split clean_content by "\n"
+    define blocks as empty List<Block>
+    define empty_lines as empty List<String>
+    define in_code_block as false
+    define code_lines as empty List<String>
+    define current_kind as ""
+    define current_lines as empty List<String>
+
+    for each line in raw_lines:
+        if in_code_block:
+            if is_code_fence(line):
+                set in_code_block to false
+                define cb as Block(kind="code", content="", level=0, lines=code_lines)
+                append cb to blocks
+                set code_lines to empty List<String>
+            else:
+                append line to code_lines
+            continue
+
+        if is_code_fence(line):
+            define opt_b as create_block_if_any(current_kind, current_lines)
+            if opt_b is not nothing:
+                append value of opt_b to blocks
+            set current_kind to ""
+            set current_lines to empty List<String>
+            set in_code_block to true
+            set code_lines to empty List<String>
+            continue
+
+        if length of string trim line == 0:
+            define opt_b as create_block_if_any(current_kind, current_lines)
+            if opt_b is not nothing:
+                append value of opt_b to blocks
+            set current_kind to ""
+            set current_lines to empty List<String>
+            continue
+
+        define h_level as get_heading_level(line)
+        if h_level > 0:
+            define opt_b as create_block_if_any(current_kind, current_lines)
+            if opt_b is not nothing:
+                append value of opt_b to blocks
+            set current_kind to ""
+            set current_lines to empty List<String>
+            define h_text as trim (slice line from (h_level + 1) to length of string line)
+            append Block(kind="heading", content=h_text, level=h_level, lines=empty_lines) to blocks
+            continue
+
+        if is_hr(line):
+            define opt_b as create_block_if_any(current_kind, current_lines)
+            if opt_b is not nothing:
+                append value of opt_b to blocks
+            set current_kind to ""
+            set current_lines to empty List<String>
+            append Block(kind="hr", content="", level=0, lines=empty_lines) to blocks
+            continue
+
+        if is_unordered_list_item(line):
+            if current_kind != "ul":
+                define opt_b as create_block_if_any(current_kind, current_lines)
+                if opt_b is not nothing:
+                    append value of opt_b to blocks
+                set current_kind to "ul"
+                set current_lines to empty List<String>
+            define item_text as slice line from 2 to length of string line
+            append item_text to current_lines
+            continue
+
+        define ol_prefix_len as get_ordered_list_prefix_len(line)
+        if ol_prefix_len > 0:
+            if current_kind != "ol":
+                define opt_b as create_block_if_any(current_kind, current_lines)
+                if opt_b is not nothing:
+                    append value of opt_b to blocks
+                set current_kind to "ol"
+                set current_lines to empty List<String>
+            define item_text as slice line from ol_prefix_len to length of string line
+            append item_text to current_lines
+            continue
+
+        if is_blockquote_line(line):
+            if current_kind != "blockquote":
+                define opt_b as create_block_if_any(current_kind, current_lines)
+                if opt_b is not nothing:
+                    append value of opt_b to blocks
+                set current_kind to "blockquote"
+                set current_lines to empty List<String>
+            if line starts with "> ":
+                append slice line from 2 to length of string line to current_lines
+            else:
+                append "" to current_lines
+            continue
+
+        if current_kind != "paragraph":
+            define opt_b as create_block_if_any(current_kind, current_lines)
+            if opt_b is not nothing:
+                append value of opt_b to blocks
+            set current_kind to "paragraph"
+            set current_lines to empty List<String>
+        append line to current_lines
+
+    if in_code_block:
+        append Block(kind="code", content="", level=0, lines=code_lines) to blocks
+    else:
+        define opt_b as create_block_if_any(current_kind, current_lines)
+        if opt_b is not nothing:
+            append value of opt_b to blocks
+
+    return blocks

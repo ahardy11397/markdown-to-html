@@ -1,0 +1,64 @@
+use md_inline
+use md_block
+use md_render
+
+test headings_levels_1_to_6_test:
+    define input as "# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6"
+    define expected as "<h1>H1</h1>\n<h2>H2</h2>\n<h3>H3</h3>\n<h4>H4</h4>\n<h5>H5</h5>\n<h6>H6</h6>"
+    assert render_markdown(input) == expected
+
+test fenced_code_preserves_angle_brackets_escaped_test:
+    define input as "```\nif (a < b && c > d) {\n    return 0;\n}\n```"
+    define expected as "<pre><code>if (a &lt; b &amp;&amp; c &gt; d) {\n    return 0;\n}</code></pre>"
+    assert render_markdown(input) == expected
+
+test lists_test:
+    define input as "- Item 1\n- Item 2\n\n1. First\n2. Second"
+    define expected as "<ul><li>Item 1</li><li>Item 2</li></ul>\n<ol><li>First</li><li>Second</li></ol>"
+    assert render_markdown(input) == expected
+
+test blockquote_multiline_test:
+    define input as "> Line 1\n> Line 2"
+    define expected as "<blockquote>Line 1<br />Line 2</blockquote>"
+    assert render_markdown(input) == expected
+
+test hr_test:
+    define input as "---"
+    define expected as "<hr />"
+    assert render_markdown(input) == expected
+
+test two_consecutive_paragraphs_test:
+    define input as "First paragraph.\n\nSecond paragraph."
+    define expected as "<p>First paragraph.</p>\n<p>Second paragraph.</p>"
+    assert render_markdown(input) == expected
+
+test multiline_paragraph_join_test:
+    define input as "Line 1\nLine 2\nLine 3"
+    define expected as "<p>Line 1 Line 2 Line 3</p>"
+    assert render_markdown(input) == expected
+
+test inline_combos_inside_list_item_test:
+    define input as "- **Bold** and *italic* with `code` and [link](https://example.com)"
+    define expected as "<ul><li><strong>Bold</strong> and <em>italic</em> with <code>code</code> and <a href=\"https://example.com\">link</a></li></ul>"
+    assert render_markdown(input) == expected
+
+test escaping_and_script_injection_inert_test:
+    define input as "<script>alert('pwned')</script>\n\nAT&T <telecom> & Co >"
+    define expected as "<p>&lt;script&gt;alert('pwned')&lt;/script&gt;</p>\n<p>AT&amp;T &lt;telecom&gt; &amp; Co &gt;</p>"
+    assert render_markdown(input) == expected
+
+test empty_file_empty_output_test:
+    assert render_markdown("") == ""
+    assert render_markdown("   \n   \n") == ""
+
+test tokens_output_test:
+    define input as "# Title\n\nPara 1\n\n- Item 1\n- Item 2\n\n> Quote\n\n---\n\n```\ncode\n```"
+    define tokens as get_tokens(input)
+    assert length of tokens == 7
+    assert tokens[0] == "heading 1"
+    assert tokens[1] == "paragraph"
+    assert tokens[2] == "list-item"
+    assert tokens[3] == "list-item"
+    assert tokens[4] == "blockquote"
+    assert tokens[5] == "hr"
+    assert tokens[6] == "code"

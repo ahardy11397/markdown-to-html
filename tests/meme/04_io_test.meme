@@ -1,0 +1,31 @@
+use md_inline
+use md_block
+use md_render
+
+test missing_file_clean_error_test:
+    define path as "definitely_nonexistent_file_98765.md"
+    define content_opt as read string from file path or else nothing
+    assert content_opt is nothing
+
+test file_render_and_cleanup_test:
+    define in_path as "scratch_test_input.md"
+    define out_path as "scratch_test_output.html"
+    define md_text as "# Document Title\n\n- Item with **bold**\n- Item with `code`\n\nParagraph text."
+    write file in_path with md_text
+
+    define loaded_opt as read string from file in_path or else nothing
+    assert loaded_opt is not nothing
+    define loaded as value of loaded_opt
+    define html as render_markdown(loaded)
+    write file out_path with html
+
+    define saved_opt as read string from file out_path or else nothing
+    assert saved_opt is not nothing
+    define saved as value of saved_opt
+    define expected as "<h1>Document Title</h1>\n<ul><li>Item with <strong>bold</strong></li><li>Item with <code>code</code></li></ul>\n<p>Paragraph text.</p>"
+    assert saved == expected
+
+    delete file in_path
+    delete file out_path
+    assert not (file exists in_path)
+    assert not (file exists out_path)

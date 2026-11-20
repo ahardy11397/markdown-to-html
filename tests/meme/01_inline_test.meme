@@ -1,0 +1,37 @@
+use md_inline
+
+test escape_html_test:
+    define res as escape_html("Tom & Jerry <friends> > enemies")
+    assert res == "Tom &amp; Jerry &lt;friends&gt; &gt; enemies"
+
+test code_span_test:
+    define res as render_inline("`code < > &`")
+    assert res == "<code>code &lt; &gt; &amp;</code>"
+
+test bold_test:
+    define res as render_inline("**bold text**")
+    assert res == "<strong>bold text</strong>"
+
+test italic_test:
+    define res as render_inline("*italic text*")
+    assert res == "<em>italic text</em>"
+
+test link_test:
+    define res as render_inline("[Google](https://google.com)")
+    assert res == "<a href=\"https://google.com\">Google</a>"
+
+test combos_test:
+    define res as render_inline("**bold and *italic* and `code`**")
+    assert res == "<strong>bold and <em>italic</em> and <code>code</code></strong>"
+
+test html_injection_test:
+    define res as render_inline("<script>alert('xss')</script>")
+    assert res == "&lt;script&gt;alert('xss')&lt;/script&gt;"
+
+test unclosed_markup_test:
+    define res as render_inline("Just * one star and ** two stars and ` one backtick and [one bracket")
+    assert res == "Just * one star and ** two stars and ` one backtick and [one bracket"
+
+test link_with_markup_test:
+    define res as render_inline("[**Bold link**](https://example.com)")
+    assert res == "<a href=\"https://example.com\"><strong>Bold link</strong></a>"

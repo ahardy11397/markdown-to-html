@@ -1,0 +1,76 @@
+# md_render.meme - Markdown HTML and Token Renderer
+use md_inline
+use md_block
+
+function render_block(b: Block) -> String:
+    if b.kind == "heading":
+        define lvl_str as text of b.level
+        define inner as render_inline(b.content)
+        return "<h" + lvl_str + ">" + inner + "</h" + lvl_str + ">"
+    if b.kind == "code":
+        define code_lines as b.lines
+        define joined_code as join code_lines with "\n"
+        define escaped_code as escape_html(joined_code)
+        return "<pre><code>" + escaped_code + "</code></pre>"
+    if b.kind == "hr":
+        return "<hr />"
+    if b.kind == "blockquote":
+        define quote_lines as b.lines
+        define out as "<blockquote>"
+        define first as true
+        for each line in quote_lines:
+            if not first:
+                set out to out + "<br />"
+            set out to out + render_inline(line)
+            set first to false
+        set out to out + "</blockquote>"
+        return out
+    if b.kind == "ul":
+        define ul_items as b.lines
+        define out as "<ul>"
+        for each item in ul_items:
+            set out to out + "<li>" + render_inline(item) + "</li>"
+        set out to out + "</ul>"
+        return out
+    if b.kind == "ol":
+        define ol_items as b.lines
+        define out as "<ol>"
+        for each item in ol_items:
+            set out to out + "<li>" + render_inline(item) + "</li>"
+        set out to out + "</ol>"
+        return out
+    if b.kind == "paragraph":
+        define para_lines as b.lines
+        define joined as join para_lines with " "
+        define inner as render_inline(joined)
+        return "<p>" + inner + "</p>"
+    return ""
+
+function render_markdown(content: String) -> String:
+    define blocks as parse_blocks(content)
+    if length of blocks == 0:
+        return ""
+    define html_parts as empty List<String>
+    for each b in blocks:
+        append render_block(b) to html_parts
+    return join html_parts with "\n"
+
+function get_tokens(content: String) -> List<String>:
+    define blocks as parse_blocks(content)
+    define tokens as empty List<String>
+    for each b in blocks:
+        if b.kind == "heading":
+            append "heading " + text of b.level to tokens
+        else if b.kind == "code":
+            append "code" to tokens
+        else if b.kind == "hr":
+            append "hr" to tokens
+        else if b.kind == "blockquote":
+            append "blockquote" to tokens
+        else if b.kind == "ul" or b.kind == "ol":
+            define list_items as b.lines
+            for each item in list_items:
+                append "list-item" to tokens
+        else if b.kind == "paragraph":
+            append "paragraph" to tokens
+    return tokens
