@@ -20,7 +20,7 @@ function run_cli() -> Void:
         define path as argument 2
         define content_opt as read string from file path or else nothing
         if content_opt is nothing:
-            print "Error: file not found: ", path
+            print error "Error: file not found: ", path
             exit with code 1
         define content as value of content_opt
         define html as render_markdown(content)
@@ -36,7 +36,7 @@ function run_cli() -> Void:
         define out_path as argument 3
         define content_opt as read string from file in_path or else nothing
         if content_opt is nothing:
-            print "Error: file not found: ", in_path
+            print error "Error: file not found: ", in_path
             exit with code 1
         define content as value of content_opt
         define html as render_markdown(content)
@@ -50,7 +50,7 @@ function run_cli() -> Void:
         define path as argument 2
         define content_opt as read string from file path or else nothing
         if content_opt is nothing:
-            print "Error: file not found: ", path
+            print error "Error: file not found: ", path
             exit with code 1
         define content as value of content_opt
         define tokens as get_tokens(content)
